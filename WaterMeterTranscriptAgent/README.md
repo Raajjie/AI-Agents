@@ -41,3 +41,15 @@ Unit 19A reads 30 cubic meter, 19B is 5 cubic meter
   }  
 ]  
 
+[  
+  {  
+    "unit": "10A",  
+    "reading": 25  
+  },  
+  {  
+    "unit": "10B",  
+    "reading": 15  
+  }  
+]  
+
+
