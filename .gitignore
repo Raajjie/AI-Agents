@@ -1,0 +1,11 @@
+/.env
+/.venv
+/Agent00.py
+/main.py
+/manualReAct.py
+/output.json
+/requirements.txt
+/test.py
+/tools.py
+/try2.py
+/venv
