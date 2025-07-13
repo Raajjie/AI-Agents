@@ -162,9 +162,6 @@ class UnitReadingAgent:
             
             self._log_step("    👁️  Observation", f"The unit and reading pair is in JSON file {unit}: {unit_data}")
         
-        # THOUGHT: Final assessment
-        self._log_step("💭 Thought", f"Successfully processed all units. Final result has {len(result)} entries")
-        
 
         return result
     

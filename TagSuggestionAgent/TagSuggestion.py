@@ -131,7 +131,10 @@ class TagSuggestionAgent:
                 self._log_reasoning(ReasoningStep.OBSERVATION, 
                                   f"Tag '{tag_name}': {keyword_matches} keyword matches, "
                                   f"{pattern_matches} pattern matches, confidence: {confidence:.2f}")
-                
+                self._log_reasoning(ReasoningStep.ACTION, 
+                                  f"Evaluating tag '{tag_name}' with confidence {confidence:.2f}")
+
+
                 if confidence > 0.1:  # Minimum confidence threshold
                     suggested_tags.append({
                         'tag': tag_name,
@@ -142,14 +145,17 @@ class TagSuggestionAgent:
                         'description': rule.description
                     })
         
+        self._log_reasoning(ReasoningStep.OBSERVATION, 
+                          f"Found total of {len(suggested_tags)} suggested tags based on the description")
+
         # Sort by confidence and priority
         suggested_tags.sort(key=lambda x: (x['confidence'], x['priority']), reverse=True)
         
         # Select top tags
         final_tags = [tag['tag'] for tag in suggested_tags[:5]]  # Top 5 tags
         
-        self._log_reasoning(ReasoningStep.CONCLUSION, 
-                          f"Final suggested tags: {final_tags}")
+        # self._log_reasoning(ReasoningStep.THOUGHT, 
+        #                   f"Top suggested tags are finalized")
         
         return {
             'tags': final_tags,
@@ -189,12 +195,11 @@ def main():
     print("- Rusted valve found near compressor 2")
     print("- Loud grinding noise from pump station")
     print("- Scheduled maintenance on storage tank")
-    print("\nType 'quit' to exit")
     print("=" * 60)
 
     while True:
         # Get user input
-        description = input("Enter description (or 'quit' to exit): ")
+        description = input("Enter description: ")
 
         if description.lower() in ['quit', 'exit', 'q']:
             print("Exiting the agent. Goodbye!")
@@ -209,19 +214,20 @@ def main():
         try:
             # Process the input description
             print(f"\nProcessing description: '{description}'")
+
+            print("\n" + "="*50)
+            print("REASONING PROCESS (ReAct Pattern)")
+            print("="*50)
+
             result = agent.suggest_tags(description)
             
+            print("\n" + "="*50)
+            print("FINAL RESULT")
+            print("="*50)
+            
             print(f"\nSUGGESTED TAGS: {result['tags']}")
-            print(f"KEYWORDS FOUND: {result['keywords_found']}")
+            print(f"KEYWORDS FOUND: {result['keywords_found']}\n")
             
-            print("\nDETAILED ANALYSIS:")
-            for suggestion in result['detailed_suggestions']:
-                print(f"  • {suggestion['tag']}: {suggestion['confidence']:.2f} confidence "
-                      f"(Priority: {suggestion['priority']}, Keywords: {suggestion['matched_keywords']})")
-            
-            print("\nREASONING LOG:")
-            for log in result['reasoning_log']:
-                print(f"  - {log}")
         
         except Exception as e:
             print(f"Error processing description: {e}")
