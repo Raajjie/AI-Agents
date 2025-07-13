@@ -26,21 +26,24 @@ STEP 13: ✅ Final Output: I now return the final tags and reasoning.
 ## Example Input 
 
 ### Sample Input 1:
+```
 Rusted valve found near compressor 2
-
+```
 ### Sample Input 2:
+```
 Loud grinding noise from pump station
-
+```
 ---
 
 ## Expected Output
 
 ### Output 1:
-
+```
 SUGGESTED TAGS: ['Corrosion', 'Compressor', 'Compressor Zone', 'Valve']  
 KEYWORDS FOUND: ['rusted', 'valve', 'found', 'near', 'compressor', '2']
-
+```
 ### Output 2:
-
+```
 SUGGESTED TAGS: ['Noise', 'Compressor', 'Pump Station']  
 KEYWORDS FOUND: ['loud', 'grinding', 'noise', 'from', 'pump', 'station']  
+```
