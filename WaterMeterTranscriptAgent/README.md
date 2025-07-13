@@ -7,18 +7,18 @@
 ## ReAct Framework
 This code follows the follow the Thought --> Action --> Observation --> Final Output paradigm of ReAct. Specificallly, the step-by-step process of the code is as follows:  
 
-STEP 1:💭 Thought: What is inside natural language input?  
-STEP 2:🔍 Action: Extract readings using regex  
-STEP 3:👁️ Observation: Report found unit and reading matches  
-STEP 4:💭 Thought: I need to validate of extracted data  
-STEP 5:🔍 Action: Check for duplicates  
-STEP 6:👁️ Observation: Report if any duplicates are found  
-STEP 7:🔍 Action: Check for conflicting readings (same unit, different values)  
-STEP 8:👁️ Observation: Report any conflicts or confirm all is good  
-STEP 8:💭 Thought: I need to prepare final JSON structure  
-STEP 9:🔍 Action: Transform matches into dictionary entries  
-STEP 9:👁️ Observation: Report and confirm final structure  
-STEP 10:💭 Thought: I got the Final Output  
+STEP 1: 💭 Thought: What is inside natural language input?  
+STEP 2: 🔍 Action: Extract readings using regex  
+STEP 3: 👁️ Observation: Report found unit and reading matches  
+STEP 4: 💭 Thought: I need to validate of extracted data  
+STEP 5: 🔍 Action: Check for duplicates  
+STEP 6: 👁️ Observation: Report if any duplicates are found  
+STEP 7: 🔍 Action: Check for conflicting readings (same unit, different values)  
+STEP 8: 👁️ Observation: Report any conflicts or confirm all is good  
+STEP 8: 💭 Thought: I need to prepare final JSON structure  
+STEP 9: 🔍 Action: Transform matches into dictionary entries  
+STEP 9: 👁️ Observation: Report and confirm final structure  
+STEP 10: 💭 Thought: I got the Final Output  
 
 
 ---
