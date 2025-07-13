@@ -1,6 +1,6 @@
-# 💧 WMTranscripter - Water Meter Reading Extractor (with ReAct Reasoning)
+# 💧 WaterMeterTranscripter - Water Meter Reading Extractor (with ReAct Reasoning)
 
-WMTranscripter is a Python tool that extracts and validates water meter readings from natural language inputs using regex and a simplified ReAct reasoning framework. It identifies unit-reading pairs, checks for duplicates or conflicting values, and outputs clean, structured JSON data.
+**WaterMeterTranscripter** is a Python tool that extracts and validates water meter readings from natural language inputs using regex and a simplified **ReAct reasoning framework**. It identifies unit-reading pairs, checks for duplicates or conflicting values, and outputs clean, structured JSON data.
 
 ---
 
