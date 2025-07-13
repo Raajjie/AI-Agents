@@ -24,7 +24,11 @@ STEP 10:💭 Thought: I got the Final Output
 ---
 
 ## Example Input 
+
+### Sample Input 1:
 Unit 19A reads 30 cubic meter, 19B is 5 cubic meter  
+
+### Sample Input 2:
 10A reads 25 cubic meter, Unit 10B is 15 cubic meter
 
 ---
