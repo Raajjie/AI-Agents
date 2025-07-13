@@ -70,32 +70,37 @@ class UnitReadingAgent:
             ValueError: If validation fails
         """
         if not matches:
-            raise ValueError("⚠️  No valid unit readings found in the input.")
+            raise ValueError("  👁️  Observation", f"Found error/s in regex matching")
+        else:
+            self._log_step("    👁️  Observation", f"Found no error/s in regex matching")
         
         # Check for exact duplicates
-        self._log_step("🔍 Action", "Checking for exact duplicate entries")
+        self._log_step("    🔍 Action", "Checking for exact duplicate entries")
         if self.check_for_duplicates(matches):
-            self._log_step("👁️  Observation", "Found exact duplicate unit entries")
+            self._log_step("    👁️  Observation", "Found exact duplicate unit entries")
             # Remove exact duplicates
             matches = list(set(matches))
-            self._log_step("🔍 Action", f"Removed duplicates, now have {len(matches)} unique entries")
-        
+            self._log_step("    🔍 Action", f"Removed duplicates, now have {len(matches)} unique entries")
+            self._log_step("    👁️  Observation", "No exact duplicate entries found")
+        else:
+            self._log_step("    👁️  Observation", "No exact duplicate entries found")
+
         # Check for conflicting values
-        self._log_step("💭 Thought", "Checking for units with conflicting reading values")
+        self._log_step("    🔍 Action", "Checking for units with conflicting reading values")
         has_conflicts, conflicts = self.check_for_conflicting_values(matches)
         
         if has_conflicts:
-            self._log_step("👁️  Observation", "Found units with conflicting reading values")
+            self._log_step("    👁️  Observation", "Found units with conflicting reading values")
             conflict_details = []
             for unit, values in conflicts.items():
                 conflict_detail = f"Unit {unit}: {', '.join(values)} cubic meters"
                 conflict_details.append(conflict_detail)
-                self._log_step("💭 Thought", f"The conflicting values are {conflict_detail}" )
+                self._log_step("    💭 Thought", f"The conflicting values are {conflict_detail}" )
             
-            error_msg = f"⚠️  Conflicting readings found for the same unit(s): {'; '.join(conflict_details)}. Please provide consistent readings for each unit."
+            error_msg = f"Conflicting readings found for the same unit(s): {'; '.join(conflict_details)}. Please provide consistent readings for each unit."
             raise ValueError(error_msg)
         else:
-            self._log_step("💭 Thought", "No conflicting values found")
+            self._log_step("    👁️  Observation", "No conflicting values found")
 
     def parse_input(self, input_text: str) -> List[Dict[str, Any]]:
         """
@@ -121,17 +126,18 @@ class UnitReadingAgent:
         self._log_step("👁️  Observation", f"Found {len(matches)} unit-reading pairs: {matches}")
         
         # THOUGHT: Plan validation strategy
-        self._log_step("💭 Thought", "Validating extracted matches to ensure data consistency")
+        self._log_step("💭 Thought", "I need to validate extracted matches to ensure data consistency")
         
         # ACTION: Comprehensive validation
         try:
+            self._log_step("    🔍 Action", "Checking for errors and inconsistency")
             self.validate_matches(matches)
         except ValueError as e:
-            self._log_step("🔍 Action", "Checking for errors and inconsistency")
+            self._log_step("    🔍 Action", "Checking for errors and inconsistency")
             raise
         
         # THOUGHT: Plan how to structure the data
-        self._log_step("💭 Thought", "Need to convert each match into the required JSON format")
+        self._log_step("💭 Thought", "I need to convert each match into the required JSON format")
         
         # ACTION: Process each match
         result = []
@@ -145,7 +151,7 @@ class UnitReadingAgent:
         
         for i, (unit, reading) in enumerate(unique_matches):
             # OBSERVATION: Detail each unit processed
-            self._log_step("👁️  Observation", f"Processing unit {unit} with reading {reading}")
+            self._log_step("    🔍 Action", f"Processing unit {unit} with reading {reading}")
             
             # ACTION: Create JSON object for this unit
             unit_data = {
@@ -154,14 +160,12 @@ class UnitReadingAgent:
             }
             result.append(unit_data)
             
-            self._log_step("🔍 Action", f"Created JSON object for unit {unit}: {unit_data}")
+            self._log_step("    👁️  Observation", f"The unit and reading pair is in JSON file {unit}: {unit_data}")
         
         # THOUGHT: Final assessment
         self._log_step("💭 Thought", f"Successfully processed all units. Final result has {len(result)} entries")
         
-        # OBSERVATION: Report final structure
-        self._log_step("👁️  Observation", f"Final JSON structure ready: {result}")
-        
+
         return result
     
     def convert_to_json(self, input_text: str) -> str:
@@ -257,8 +261,9 @@ def main():
             
 
         except Exception as e:
-            print(f"Error processing input: {e}")
-            print("Please check your input format and ensure consistent readings.")
+            print(f"    👁️  Observation: Error processing input:")
+            print(f"{e}")
+            print("\nPlease check your input format and ensure consistent readings.")
 
 if __name__ == "__main__":
     main()
