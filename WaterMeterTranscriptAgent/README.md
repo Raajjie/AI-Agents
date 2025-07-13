@@ -5,7 +5,8 @@ WMTranscripter is a Python tool that extracts and validates water meter readings
 ---
 
 ## ReAct Framework
-This code follows the follow the Thought --> Action --> Observation --> Final Output paradigm of ReAct. Specificallly, the step-by-step process of the code is as follows:
+This code follows the follow the Thought --> Action --> Observation --> Final Output paradigm of ReAct. Specificallly, the step-by-step process of the code is as follows:  
+
 STEP 1:💭 Thought: What is inside natural language input?
 STEP 2:🔍 Action: Extract readings using regex
 STEP 3:👁️ Observation: Report found unit and reading matches
