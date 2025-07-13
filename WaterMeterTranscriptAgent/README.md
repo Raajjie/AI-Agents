@@ -24,20 +24,20 @@ STEP 10:💭 Thought: I got the Final Output
 ---
 
 ## Example Input 
-Unit 19A reads 30 cubic meter, 19B is 5 cubic meter
+Unit 19A reads 30 cubic meter, 19B is 5 cubic meter  
 10A reads 25 cubic meter, Unit 10B is 15 cubic meter
 
 --
 
 ## Expected Output
-[
-  {
-    "unit": "19A",
-    "reading": 30
-  },
-  {
-    "unit": "19B",
-    "reading": 5
-  }
-]
+[  
+  {  
+    "unit": "19A",  
+    "reading": 30  
+  },  
+  {  
+    "unit": "19B",  
+    "reading": 5  
+  }  
+]  
 
