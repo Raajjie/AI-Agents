@@ -7,51 +7,40 @@
 ## ReAct Framework
 This code follows the follow the Thought --> Action --> Observation --> Final Output paradigm of ReAct. Specificallly, the step-by-step process of the code is as follows:  
 
-STEP 1:💭 Thought: What is inside natural language input?  
-STEP 2:🔍 Action: Extract readings using regex  
-STEP 3:👁️ Observation: Report found unit and reading matches  
-STEP 4:💭 Thought: I need to validate of extracted data  
-STEP 5:🔍 Action: Check for duplicates  
-STEP 6:👁️ Observation: Report if any duplicates are found  
-STEP 7:🔍 Action: Check for conflicting readings (same unit, different values)  
-STEP 8:👁️ Observation: Report any conflicts or confirm all is good  
-STEP 8:💭 Thought: I need to prepare final JSON structure  
-STEP 9:🔍 Action: Transform matches into dictionary entries  
-STEP 9:👁️ Observation: Report and confirm final structure  
-STEP 10:💭 Thought: I got the Final Output  
-
+STEP 1: 💭 Thought: I need to analyze the input description to understand what tags may apply.
+STEP 2: 🔍 Action: Extract all words (keywords) from the natural language input.
+STEP 3: 👁️ Observation: Keywords successfully extracted.
+STEP 4: 💭 Thought: I should now compare the input against known tag rules.
+STEP 5: 🔍 Action: Iterate through each tag rule and count keyword matches and regex pattern matches.
+STEP 6: 👁️ Observation: For each tag, report number of matches and compute a confidence score.
+STEP 7: 💭 Thought: I will filter out tags with low confidence.
+STEP 8: 🔍 Action: Keep only tags above the confidence threshold.
+STEP 9: 👁️ Observation: Valid tags with sufficient confidence collected.
+STEP 10: 💭 Thought: I should now prioritize the best suggestions.
+STEP 11: 🔍 Action: Sort valid tags by confidence and priority.
+STEP 12: 👁️ Observation: Top tags selected.
+STEP 13: ✅ Final Output: I now return the final tags and reasoning.
 
 ---
 
 ## Example Input 
 
 ### Sample Input 1:
-Unit 19A reads 30 cubic meter, 19B is 5 cubic meter  
+Rusted valve found near compressor 2
 
 ### Sample Input 2:
-10A reads 25 cubic meter, Unit 10B is 15 cubic meter
+Loud grinding noise from pump station
 
 ---
 
 ## Expected Output
 
 ### Output 1:
-[  {  
-    "unit": "19A",  
-    "reading": 30  
-  },  
-  {  
-    "unit": "19B",  
-    "reading": 5  
-  } ]  
+
+SUGGESTED TAGS: ['Corrosion', 'Compressor', 'Compressor Zone', 'Valve']  
+KEYWORDS FOUND: ['rusted', 'valve', 'found', 'near', 'compressor', '2']
 
 ### Output 2:
 
-[  {  
-    "unit": "10A",  
-    "reading": 25  
-  },  
-  {  
-    "unit": "10B",  
-    "reading": 15  
-  } ]  
+SUGGESTED TAGS: ['Noise', 'Compressor', 'Pump Station']  
+KEYWORDS FOUND: ['loud', 'grinding', 'noise', 'from', 'pump', 'station']  
