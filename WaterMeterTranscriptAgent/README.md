@@ -27,7 +27,7 @@ STEP 10:💭 Thought: I got the Final Output
 Unit 19A reads 30 cubic meter, 19B is 5 cubic meter  
 10A reads 25 cubic meter, Unit 10B is 15 cubic meter
 
---
+---
 
 ## Expected Output
 [  
